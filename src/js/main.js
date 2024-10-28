@@ -1,30 +1,29 @@
 import IMask from "imask";
 import "../styles/styles.css";
 
+const nameInput = document.getElementById("name");
 const phoneInput = document.getElementById("phone");
 const buttonForm = document.getElementById("btn");
 const emailInput = document.getElementById("email");
-// const messageInput = document.getElementById("letter");
+const letterInput = document.getElementById("letter");
 const errorMessage = document.getElementById("email-error");
 const phoneMask = new IMask(phoneInput, {
   mask: "+{375}(00)000-00-00",
+  mask: "+{7}(000) 000-00-00",
 });
 
-// buttonForm.disabled = true;
-//   phoneInput.addEventListener("input", () => {
-//     buttonForm.disabled = !(phoneMask.masked.isComplete);
-//   });
-
 // VALIDATION
-const invalidEmail = (input) => {
+const isValidEmail = (input) => {
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!regex.test(input.value)) {
     input.classList.add("failed-input");
     errorMessage.textContent = "Enter a valid e-mail address";
     errorMessage.classList.remove("hidden");
+    return false;
   } else {
     input.classList.remove("failed-input");
     errorMessage.classList.add("hidden");
+    return true;
   }
 };
 
@@ -37,32 +36,32 @@ const validateField = (input) => {
     return false;
   } else {
     input.classList.remove("failed-input");
-    errorMessage.classList.add("hidden"); // Скрываем сообщение
+    errorMessage.classList.add("hidden");
     return true;
   }
 };
 
-//// Function for checking all form fields
+// Function for checking all form fields
 const validateForm = (event) => {
   event.preventDefault();
   let isValid = true;
-  const inputs = [
-    document.getElementById("name"),
-    document.getElementById("email"),
-    document.getElementById("phone"),
-    document.getElementById("letter"),
-  ];
+
+  const inputs = [nameInput, emailInput, phoneInput, letterInput];
   inputs.forEach((input) => {
     if (!validateField(input)) {
-      isValid = false; // If at least one field is not valid
+      isValid = false;
     }
   });
 
-  if (isValid) {
-    console.log("The form has been successfully submitted!");
+  // Проверяем email отдельно
+  if (!isValidEmail(emailInput)) {
+    isValid = false; // Если email некорректен
   }
+
+  isValid
+    ? console.log("The form has been successfully submitted!")
+    : console.log("Oops, there was an error submitting the form");
 };
 
-// Пример использования:
-emailInput.addEventListener("input", () => invalidEmail(emailInput));
-buttonForm.addEventListener('click', validateForm);
+emailInput.addEventListener("input", () => isValidEmail(emailInput));
+buttonForm.addEventListener("click", validateForm);
