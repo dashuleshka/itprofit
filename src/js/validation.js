@@ -7,6 +7,10 @@ export const emailInput = document.getElementById("email");
 export const letterInput = document.getElementById("letter");
 export const emailMessage = document.getElementById("email-error");
 
+const phoneMask = new IMask(phoneInput, {
+  mask: "+{375}(00)000-00-00",
+});
+
 export const isValidEmail = (input) => {
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!regex.test(input.value)) {
