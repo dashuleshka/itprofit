@@ -1,4 +1,3 @@
-import IMask from "imask";
 import "../styles/style.scss";
 
 import { initializeModal } from "./modal";
@@ -14,7 +13,18 @@ import {
 } from "./validation";
 import { sendFormData } from "./ajax";
 
-buttonForm.addEventListener("click", async (event) => {
+[nameInput, emailInput, phoneInput, letterInput].forEach((input) => {
+  //применяю валидность к полям
+  input.addEventListener("input", () => {
+    validateField(input);
+    if (input.id === "email") {
+      isValidEmail(input);
+    }
+  });
+});
+
+const form = document.getElementById("form");
+form.addEventListener("submit", async (event) => {
   //cбор данных, отправка на сервер
   event.preventDefault();
   const formData = {
@@ -25,16 +35,6 @@ buttonForm.addEventListener("click", async (event) => {
   };
 
   await sendFormData(formData);
-});
-
-[nameInput, emailInput, phoneInput, letterInput].forEach((input) => {
-  //применяю валидность к полям
-  input.addEventListener("input", () => {
-    validateField(input);
-    if (input.id === "email") {
-      isValidEmail(input);
-    }
-  });
 });
 
 initializeModal();

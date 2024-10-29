@@ -1,3 +1,4 @@
+import IMask from "imask";
 import { sendFormData } from "./main";
 
 export const nameInput = document.getElementById("name");
