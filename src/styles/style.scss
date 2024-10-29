@@ -1,13 +1,25 @@
+$primary-color: #383838;
+$background-color: #f8f9f4e3;
+$input-border-color: rgb(215, 170, 21);
+$button-bg-color: #3077c6;
+$error-color: #dd0a0a;
+$modal-bg: #fff;
+$modal-border: #514c4cd9;
+$confirm-bg: #4caf50;
+$cancel-bg: #f44336;
+$overlay-bg: rgba(0, 0, 0, 0.5);
+$shadow: rgba(0, 0, 0, 0.2);
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #383838;
+  color: $primary-color;
 }
 
 body {
   height: 100vh;
-  background-color: #f8f9f4e3;
+  background-color: $background-color;
   overflow: hidden;
 }
 
@@ -15,7 +27,7 @@ input {
   outline: none;
   height: 50px;
   border-radius: 8px;
-  border: 3px solid rgb(215, 170, 21);
+  border: 3px solid $input-border-color;
   padding-left: 18px;
 }
 
@@ -32,7 +44,7 @@ label {
   font-size: 16px;
   border-radius: 8px;
   border: 3px transparent;
-  background-color: #3077c6;
+  background-color: $button-bg-color;
   cursor: pointer;
 }
 
@@ -57,13 +69,13 @@ label {
   display: flex;
   flex-direction: column;
   gap: 30px;
-}
 
-.input-container div {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 80%;
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+  }
 }
 
 .message-input {
@@ -72,12 +84,12 @@ label {
 }
 
 .failed-input {
-  border-color: #dd0a0a;
+  border-color: $error-color;
 }
 
 .error-message {
   font-size: 12px;
-  color: #dd0a0a;
+  color: $error-color;
 }
 
 .hidden {
@@ -86,10 +98,10 @@ label {
 
 .modal-button {
   height: 45px;
-  border: 2px solid #514c4cd9;
+  border: 2px solid $modal-border;
   font-size: 15px;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: $modal-bg;
 }
 
 .modal-window {
@@ -105,18 +117,18 @@ label {
   width: 450px;
   height: 200px;
   padding: 20px;
-  background-color: #fff;
+  background-color: $modal-bg;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px $shadow;
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1000;
-}
 
-.modal-window.show {
-  display: flex;
-  opacity: 1;
-  animation: slideIn 0.3s forwards;
+  &.show {
+    display: flex;
+    opacity: 1;
+    animation: slideIn 0.3s forwards;
+  }
 }
 
 @keyframes slideIn {
@@ -137,12 +149,12 @@ label {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $overlay-bg;
   z-index: 999;
-}
 
-.modal-overlay.show {
-  display: block;
+  &.show {
+    display: block;
+  }
 }
 
 .button-container {
@@ -153,7 +165,7 @@ label {
 .confirm-button {
   width: 120px;
   height: 40px;
-  background-color: #4caf50;
+  background-color: $confirm-bg;
   color: white;
   border-radius: 5px;
 }
@@ -161,7 +173,7 @@ label {
 .cancel-button {
   width: 120px;
   height: 40px;
-  background-color: #f44336;
+  background-color: $cancel-bg;
   color: white;
   border-radius: 5px;
 }

@@ -1,1 +1,70 @@
-<!doctype html><html><head><meta charset="utf-8"/><title>Contact us</title><meta name="viewport" content="width=device-width,initial-scale=1"/><script defer="defer" src="bundle.js"></script><script defer="defer" src="bundle.js"></script></head><body><div class="container"><h2>Contact Us</h2><form class="contact-form"><div class="input-container"><div><label for="name">Name</label> <input class="name-input" id="name" placeholder="John Snow"/></div><div><label for="email">E-mail</label> <input class="email-input" id="email" placeholder="e-mail"/></div><div><label for="phone">Phone</label> <input id="phone" name="phone" placeholder="Your phone"/></div><div><label for="message">Message</label> <textarea class="message-input" id="message" name="message" placeholder="Your message"></textarea></div></div><button class="form-button" id="btn" type="submit">Submit</button></form></div></body><script src="./js/main.js"></script><script src="./js/validation.js" type="module"></script></html>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Contact us</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script defer src="bundle.js"></script></head>
+  <body>
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form id="form" class="contact-form">
+        <div class="input-container">
+          <div>
+            <label for="name">Name</label>
+            <input
+              class="name-input"
+              id="name"
+              type="text"
+              placeholder="John Snow"
+            />
+            <span id="name-error" class="error-message hidden"></span>
+          </div>
+          <div>
+            <label for="email">E-mail</label>
+            <input
+              class="email-input"
+              id="email"
+              type="email"
+              placeholder="e-mail"
+            />
+            <span id="email-error" class="error-message hidden"></span>
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="Your phone"
+            />
+            <span id="phone-error" class="error-message hidden"></span>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea
+              class="message-input"
+              id="letter"
+              name="message"
+              placeholder="Your message"
+            ></textarea>
+            <span id="letter-error" class="error-message hidden"></span>
+          </div>
+        </div>
+        <button class="form-button" id="btn" type="button">Submit</button>
+      </form>
+
+      <div class="modal-window" id="modal">
+        <h2>You really want to get out?</h2>
+        <span
+          >If you exit now, all unsaved changes will be lost. Do you want to
+          exit?</span
+        >
+        <button class="confirm-button" id="yesButton">Yes</button>
+        <button class="cancel-button" id="noButton">No</button>
+      </div>
+      <button class="modal-button" id="openModal">Exit</button>
+    </div>
+  </body>
+  <script defer="defer" src="bundle.js"></script>
+</html>

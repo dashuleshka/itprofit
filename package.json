@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx webpack --mode production",
+    "build:css": "sass sass/style.scss css/style.css",
     "start": "concurrently \"npm run server\" \"webpack serve\"",
     "server": "node server/index.js"
   },
@@ -16,6 +17,8 @@
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
     "prettier": "3.3.3",
+    "sass": "^1.80.4",
+    "sass-loader": "^16.0.2",
     "style-loader": "^4.0.0",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4",
