@@ -11,6 +11,8 @@ export const sendFormData = async (formData) => {
     const result = await response.json();
 
     if (response.ok) {
+      // Очистка полей формы
+      document.getElementById("form").reset();
       alert(result.msg);
     } else {
       // обработка ошибок

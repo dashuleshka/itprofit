@@ -21,6 +21,7 @@ buttonForm.addEventListener("click", async (event) => {
     phone: phoneInput.value,
     message: letterInput.value,
   };
+
   await sendFormData(formData);
 });
 
