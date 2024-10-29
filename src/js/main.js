@@ -1,5 +1,5 @@
 import IMask from "imask";
-import "../styles/styles.css";
+import "../styles/style.scss";
 
 import {
   isValidEmail,
