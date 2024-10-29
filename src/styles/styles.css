@@ -27,7 +27,6 @@ label {
 }
 
 .form-button {
-  pointer-events: auto;
   margin-top: 15px;
   width: 170px;
   height: 45px;

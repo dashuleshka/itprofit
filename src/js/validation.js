@@ -1,56 +1,59 @@
-// export const validateEmail = (email) => {
-//   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//   return regex.test(email);
-// };
+import { sendFormData } from "./main";
 
-// export function validateField(input, condition, errorMessage) {
-//   const errorElement = input.nextElementSibling;
-//   if (!condition) {
-//     input.style.borderColor = "red";
-//     if (!errorElement) {
-//       const errorText = document.createElement("div");
-//       errorText.style.color = "red";
-//       errorText.textContent = errorMessage;
-//       input.parentNode.appendChild(errorText);
-//     }
-//   } else {
-//     input.style.borderColor = "";
-//     if (errorElement) {
-//       errorElement.remove();
-//     }
-//   }
-// }
+export const nameInput = document.getElementById("name");
+export const phoneInput = document.getElementById("phone");
+export const buttonForm = document.getElementById("btn");
+export const emailInput = document.getElementById("email");
+export const letterInput = document.getElementById("letter");
+export const emailMessage = document.getElementById("email-error");
 
-// export function validateForm() {
-//   const isNameValid = nameInput.value.trim() !== "";
-//   validateField(nameInput, isNameValid, "Name is required.");
+export const isValidEmail = (input) => {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!regex.test(input.value)) {
+    input.classList.add("failed-input");
+    emailMessage.textContent = "Enter a valid e-mail address";
+    emailMessage.classList.remove("hidden");
+    return false;
+  } else {
+    input.classList.remove("failed-input");
+    emailMessage.classList.add("hidden");
+    return true;
+  }
+};
 
-//   const isEmailValid = validateEmail(emailInput.value);
-//   validateField(emailInput, isEmailValid, "Invalid email address.");
+export const validateField = (input) => {
+  const errorMessage = document.getElementById(`${input.id}-error`);
+  if (!input.value.trim()) {
+    input.classList.add("failed-input");
+    errorMessage.textContent = "*This field is required.";
+    errorMessage.classList.remove("hidden");
+    return false;
+  } else {
+    input.classList.remove("failed-input");
+    errorMessage.classList.add("hidden");
+    return true;
+  }
+};
 
-//   const isPhoneValid = phoneMask.masked.isComplete;
-//   validateField(phoneInput, isPhoneValid, "Phone number is incomplete.");
+// Function for checking all form fields
+export const validateForm = (event) => {
+  event.preventDefault();
+  let isValid = true;
 
-//   const isMessageValid = messageInput.value.trim() !== "";
-//   validateField(messageInput, isMessageValid, "Message is required.");
+  const inputs = [nameInput, emailInput, phoneInput, letterInput];
+  inputs.forEach((input) => {
+    if (!validateField(input)) {
+      isValid = false;
+    }
+  });
 
-//   buttonForm.disabled = !(
-//     isNameValid &&
-//     isEmailValid &&
-//     isPhoneValid &&
-//     isMessageValid
-//   );
-// }
+  if (!isValidEmail(emailInput)) {
+    isValid = false;
+  }
 
-// [nameInput, emailInput, phoneInput, messageInput].forEach((input) => {
-//   input.addEventListener("input", validateForm);
-// });
+  if (isValid) {
+    console.log("The form has been successfully submitted!");
+  }
 
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   validateForm();
-//   if (!buttonForm.disabled) {
-//     // Form can be submitted
-//     console.log("Form submitted");
-//   }
-// });
+  return isValid;
+};
